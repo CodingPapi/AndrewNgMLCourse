@@ -42,11 +42,11 @@ Theta_grad = zeros(size(Theta));
 
 Temp = X * Theta' - Y;
 
-J = sum(sum((Temp .* R) .^ 2)) / 2;
+J = sum(sum((Temp .* R) .^ 2)) / 2 + lambda * (sum((Theta .^ 2)(:)) + sum((X .^ 2)(:))) / 2;
 
-X_grad = (Temp .* R) * Theta;
+X_grad = (Temp .* R) * Theta + lambda * X;
 
-Theta_grad = (Temp .* R)' * X;
+Theta_grad = (Temp .* R)' * X + lambda * Theta;
 
 
 
